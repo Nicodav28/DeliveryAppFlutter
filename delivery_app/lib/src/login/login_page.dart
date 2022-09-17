@@ -1,6 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:delivery_app/src/utils/my_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -29,7 +30,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Column(
               children: [
-                _imageBanner(context),
+                // _imageBanner(context),
+                _animateBanner(context),
                 _emailTextField(),
                 _passTextField(),
                 _loginButton(),
@@ -65,6 +67,21 @@ Widget _imageBanner(BuildContext context) {
       'assets/img/delivery.png',
       width: 200,
       height: 200,
+    ),
+  );
+}
+
+Widget _animateBanner(BuildContext context){
+  return Container(
+    margin: EdgeInsets.only(
+        top: 155,
+        bottom: MediaQuery.of(context).size.height * 0.15
+    ),
+    child: Lottie.asset(
+      'assets/json/delivery.json',
+      width: 350,
+      height: 200,
+      fit: BoxFit.fill
     ),
   );
 }
@@ -135,7 +152,8 @@ Widget _loginText(){
     style: TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.bold,
-      fontSize: 22
+      fontSize: 22,
+      fontFamily: 'NimbusSans'
     ),
   );
 }
