@@ -1,4 +1,5 @@
 import 'package:delivery_app/src/login/login_page.dart';
+import 'package:delivery_app/src/register/register_page.dart';
 import 'package:delivery_app/src/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -21,10 +22,12 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: 'login',
       routes: {
-        'login' : (BuildContext context) => LoginPage()
+        'login' : (BuildContext context) => LoginPage(),
+        'register' : (BuildContext context) => RegisterPage()
       },
       theme: ThemeData(
         appBarTheme: AppBarTheme(color: MyColors.primaryColor),
+          scaffoldBackgroundColor: const Color(0xFFFFFFFF),
         // fontFamily: 'NimbusSans',
         primaryColor: MyColors.primaryColor
       ),

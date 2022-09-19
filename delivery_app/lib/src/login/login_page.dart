@@ -1,6 +1,8 @@
 // import 'package:flutter/cupertino.dart';
+  import 'package:delivery_app/src/login/login_controller.dart';
 import 'package:delivery_app/src/utils/my_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,8 +13,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  LoginController _loginController = new LoginController();
+
   @override
-  Widget build(BuildContext context) {
+  void initState() {//Primer metodo que se ejecuta cuando inicial el App
+    // TODO: implement initState
+    super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {//Inicializa controladores
+      _loginController.init(context);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {//Se ejecuta por cada HotReload
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -35,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                 _emailTextField(),
                 _passTextField(),
                 _loginButton(),
-                _rowElement()
+                _rowElement(context)
               ]
             ),
           ],
@@ -158,7 +173,7 @@ Widget _loginText(){
   );
 }
 
-Widget _rowElement(){
+Widget _rowElement(BuildContext context){
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
@@ -169,12 +184,15 @@ Widget _rowElement(){
         ),
       ),
       const SizedBox(width: 7,),
-      Text(
-          'Registrate',
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: MyColors.primaryColor
-          )
+      GestureDetector(
+        onTap: _LoginController,
+        child: Text(
+            'Registrate',
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: MyColors.primaryColor
+            )
+        ),
       )
     ],
   );
