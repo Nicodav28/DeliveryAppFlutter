@@ -8,7 +8,12 @@ class LoginController {
     this.context = context;
   }
 
-  void registerPageRedi(BuildContext context){
-    Navigator.pushNamed(context, 'register');
+  registerPageRedi (BuildContext context) async {
+    await Future.delayed(Duration(seconds: 1), () {
+      Navigator.pushNamed(
+          context,
+          'register'
+      );
+    });
   }
 }

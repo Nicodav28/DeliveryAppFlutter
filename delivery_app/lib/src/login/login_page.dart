@@ -1,9 +1,10 @@
-// import 'package:flutter/cupertino.dart';
-  import 'package:delivery_app/src/login/login_controller.dart';
+import 'package:delivery_app/src/login/login_controller.dart';
 import 'package:delivery_app/src/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:lottie/lottie.dart';
+
+LoginController _loginController = new LoginController();
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,15 +15,13 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  LoginController _loginController = new LoginController();
-
   @override
   void initState() {//Primer metodo que se ejecuta cuando inicial el App
     // TODO: implement initState
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {//Inicializa controladores
-      _loginController.init(context);
+        _loginController.init(context);
     });
   }
 
@@ -44,14 +43,14 @@ class _LoginPageState extends State<LoginPage> {
                 child: _loginText()
             ),
             Column(
-              children: [
-                // _imageBanner(context),
-                _animateBanner(context),
-                _emailTextField(),
-                _passTextField(),
-                _loginButton(),
-                _rowElement(context)
-              ]
+                children: [
+                  // _imageBanner(context),
+                  _animateBanner(context),
+                  _emailTextField(),
+                  _passTextField(),
+                  _loginButton(),
+                  _rowElement(context)
+                ]
             ),
           ],
         ),
@@ -93,10 +92,10 @@ Widget _animateBanner(BuildContext context){
         bottom: MediaQuery.of(context).size.height * 0.15
     ),
     child: Lottie.asset(
-      'assets/json/delivery.json',
-      width: 350,
-      height: 200,
-      fit: BoxFit.fill
+        'assets/json/delivery.json',
+        width: 350,
+        height: 200,
+        fit: BoxFit.fill
     ),
   );
 }
@@ -105,18 +104,18 @@ Widget _emailTextField(){
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
     decoration: BoxDecoration(
-      color: MyColors.primaryOpacityColor,
-          borderRadius: BorderRadius.circular(30)
+        color: MyColors.primaryOpacityColor,
+        borderRadius: BorderRadius.circular(30)
     ),
     child: TextField(
       decoration: InputDecoration(
-          hintText: 'Correo Electronico',
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.all(15),
-          prefixIcon: Icon(Icons.email, color: MyColors.primaryColor),
-          hintStyle: TextStyle(
+        hintText: 'Correo Electronico',
+        border: InputBorder.none,
+        contentPadding: EdgeInsets.all(15),
+        prefixIcon: Icon(Icons.email, color: MyColors.primaryColor),
+        hintStyle: TextStyle(
             color: MyColors.primaryColorDark
-          ),
+        ),
       ),
     ),
   );
@@ -148,27 +147,27 @@ Widget _loginButton(){
     width: double.infinity,
     margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
     child: ElevatedButton(
-        onPressed: () {},
-        child: Text('INGRESAR'),
-        style: ElevatedButton.styleFrom(
+      onPressed: () {},
+      child: Text('INGRESAR'),
+      style: ElevatedButton.styleFrom(
           primary: MyColors.primaryColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30)
+              borderRadius: BorderRadius.circular(30)
           ),
           padding: EdgeInsets.symmetric(vertical: 15)
-        ),
+      ),
     ),
   );
 }
 
 Widget _loginText(){
   return Text(
-      'LOGIN',
+    'LOGIN',
     style: TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-      fontSize: 22,
-      fontFamily: 'NimbusSans'
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 22,
+        fontFamily: 'NimbusSans'
     ),
   );
 }
@@ -185,7 +184,7 @@ Widget _rowElement(BuildContext context){
       ),
       const SizedBox(width: 7,),
       GestureDetector(
-        onTap: _LoginController,
+        onTap: () => _loginController.registerPageRedi(context),
         child: Text(
             'Registrate',
             style: TextStyle(
@@ -197,4 +196,3 @@ Widget _rowElement(BuildContext context){
     ],
   );
 }
-

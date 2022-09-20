@@ -22,14 +22,14 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: 'login',
       routes: {
-        'login' : (BuildContext context) => LoginPage(),
-        'register' : (BuildContext context) => RegisterPage()
+        'login' : (BuildContext context) => const LoginPage(),
+        'register' : (BuildContext context) => const RegisterPage()
       },
       theme: ThemeData(
-        appBarTheme: AppBarTheme(color: MyColors.primaryColor),
+          appBarTheme: AppBarTheme(color: MyColors.primaryColor),
           scaffoldBackgroundColor: const Color(0xFFFFFFFF),
-        // fontFamily: 'NimbusSans',
-        primaryColor: MyColors.primaryColor
+          // fontFamily: 'NimbusSans',
+          primaryColor: MyColors.primaryColor
       ),
     );
   }
