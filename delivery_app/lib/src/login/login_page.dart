@@ -42,15 +42,19 @@ class _LoginPageState extends State<LoginPage> {
                 left: 25,
                 child: _loginText()
             ),
-            Column(
-                children: [
-                  // _imageBanner(context),
-                  _animateBanner(context),
-                  _emailTextField(),
-                  _passTextField(),
-                  _loginButton(),
-                  _rowElement(context)
-                ]
+            Container(
+              child: SingleChildScrollView(
+                child: Column(
+                    children: [
+                      // _imageBanner(context),
+                      _animateBanner(context),
+                      _emailTextField(),
+                      _passTextField(),
+                      _loginButton(),
+                      _rowElement(context)
+                    ]
+                ),
+              ),
             ),
           ],
         ),
@@ -108,6 +112,7 @@ Widget _emailTextField(){
         borderRadius: BorderRadius.circular(30)
     ),
     child: TextField(
+      keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         hintText: 'Correo Electronico',
         border: InputBorder.none,
@@ -129,6 +134,9 @@ Widget _passTextField(){
         borderRadius: BorderRadius.circular(30)
     ),
     child: TextField(
+      obscureText: true,
+      enableSuggestions: false,
+      autocorrect: false,
       decoration: InputDecoration(
         hintText: 'Contraseña',
         border: InputBorder.none,
