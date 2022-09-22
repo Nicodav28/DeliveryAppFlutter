@@ -112,6 +112,7 @@ Widget _emailTextField(){
         borderRadius: BorderRadius.circular(30)
     ),
     child: TextField(
+      controller: _loginController.emailController,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         hintText: 'Correo Electronico',
@@ -134,6 +135,7 @@ Widget _passTextField(){
         borderRadius: BorderRadius.circular(30)
     ),
     child: TextField(
+      controller: _loginController.passwordController,
       obscureText: true,
       enableSuggestions: false,
       autocorrect: false,
@@ -155,7 +157,7 @@ Widget _loginButton(){
     width: double.infinity,
     margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
     child: ElevatedButton(
-      onPressed: () {},
+      onPressed: _loginController.login,
       child: Text('INGRESAR'),
       style: ElevatedButton.styleFrom(
           primary: MyColors.primaryColor,

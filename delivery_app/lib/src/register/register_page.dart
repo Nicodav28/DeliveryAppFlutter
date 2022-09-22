@@ -1,5 +1,9 @@
+import 'package:delivery_app/src/register/register_controller.dart';
 import 'package:delivery_app/src/utils/my_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+
+RegisterController _registerController = new RegisterController();
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -9,6 +13,16 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      _registerController.init(context);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +91,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _iconButton() {
     return IconButton(
-        onPressed: () {},
+        onPressed: () => _registerController.loginPageRedi(context),
         icon: const Icon(Icons.arrow_back_ios, color: Colors.white)
     );
   }
@@ -102,6 +116,8 @@ class _RegisterPageState extends State<RegisterPage> {
           borderRadius: BorderRadius.circular(30)
       ),
       child: TextField(
+        controller: _registerController.emailController,
+        keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           hintText: 'Correo Electronico',
           border: InputBorder.none,
@@ -123,6 +139,8 @@ class _RegisterPageState extends State<RegisterPage> {
           borderRadius: BorderRadius.circular(30)
       ),
       child: TextField(
+        controller: _registerController.nameController,
+        keyboardType: TextInputType.text,
         decoration: InputDecoration(
           hintText: 'Nombre',
           border: InputBorder.none,
@@ -144,11 +162,13 @@ class _RegisterPageState extends State<RegisterPage> {
           borderRadius: BorderRadius.circular(30)
       ),
       child: TextField(
+        controller: _registerController.lastNameController,
+        keyboardType: TextInputType.text,
         decoration: InputDecoration(
           hintText: 'Apellido',
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(15),
-          prefixIcon: Icon(Icons.person, color: MyColors.primaryColor),
+          prefixIcon: Icon(Icons.person_outline, color: MyColors.primaryColor),
           hintStyle: TextStyle(
               color: MyColors.primaryColorDark
           ),
@@ -165,11 +185,13 @@ class _RegisterPageState extends State<RegisterPage> {
           borderRadius: BorderRadius.circular(30)
       ),
       child: TextField(
+        controller: _registerController.phoneController,
+        keyboardType: TextInputType.phone,
         decoration: InputDecoration(
           hintText: 'Telefono',
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(15),
-          prefixIcon: Icon(Icons.person, color: MyColors.primaryColor),
+          prefixIcon: Icon(Icons.phone, color: MyColors.primaryColor),
           hintStyle: TextStyle(
               color: MyColors.primaryColorDark
           ),
@@ -186,11 +208,15 @@ class _RegisterPageState extends State<RegisterPage> {
           borderRadius: BorderRadius.circular(30)
       ),
       child: TextField(
+        controller: _registerController.passwordController,
+        obscureText: true,
+        enableSuggestions: false,
+        autocorrect: false,
         decoration: InputDecoration(
           hintText: 'Contraseña',
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(15),
-          prefixIcon: Icon(Icons.person, color: MyColors.primaryColor),
+          prefixIcon: Icon(Icons.lock, color: MyColors.primaryColor),
           hintStyle: TextStyle(
               color: MyColors.primaryColorDark
           ),
@@ -207,11 +233,15 @@ class _RegisterPageState extends State<RegisterPage> {
           borderRadius: BorderRadius.circular(30)
       ),
       child: TextField(
+        controller: _registerController.passConfirmController,
+        obscureText: true,
+        enableSuggestions: false,
+        autocorrect: false,
         decoration: InputDecoration(
           hintText: 'Confirmar Contraseña',
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(15),
-          prefixIcon: Icon(Icons.person, color: MyColors.primaryColor),
+          prefixIcon: Icon(Icons.lock_outline, color: MyColors.primaryColor),
           hintStyle: TextStyle(
               color: MyColors.primaryColorDark
           ),
@@ -227,7 +257,7 @@ class _RegisterPageState extends State<RegisterPage> {
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: _registerController.register,
         child: Text('REGISTRARME'),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
