@@ -7,6 +7,10 @@ const server = http.createServer(app);
 const logger = require('morgan');
 const cors = require('cors');
 const { application } = require('express');
+
+//  RUTAS
+
+const users = require('./routes/userRoutes');
 const port = process.env.PORT || 3000;
 
 app.use(logger('dev'));
@@ -18,6 +22,9 @@ app.use(cors());
 app.disable('x-powered-by');
 app.set('port', port);
 
+// Llamado a rutas
+users(app);
+
 server.listen(3000, '192.168.20.34' || 'localhost', function () {
     console.log('Listening on port ' + port +' '+ process.pid + ' Iniciada...');    
 });
@@ -26,16 +33,13 @@ app.get('/', (req, res) => {
     res.status(200).send('Ruta raiz Backend');
 });
 
-app.get('/test', (req, res) => {
-    res.status(200).send('Esta es la ruta test');
-});
-
-app.get('/init', (req, res) => {
-    res.status(200).send('Esta es la ruta init');
-});
-
 // Error Handler
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).send('Server Error');
 });
+
+module.exports = {
+    app: app,
+    server: server
+};
