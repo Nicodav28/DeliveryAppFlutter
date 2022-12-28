@@ -23,7 +23,7 @@ const register = async function (req, res, next){
 
         return res.status(200).json({
             success: true,
-            message: 'Usuario creado',
+            message: 'El usuario ha sido creado de manera exitosa',
             data: reg
         });
 
