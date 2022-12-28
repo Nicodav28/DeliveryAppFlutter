@@ -26,7 +26,7 @@ app.set('port', port);
 users(app);
 
 server.listen(3000, '192.168.20.34' || 'localhost', function () {
-    console.log('Listening on port ' + port +' '+ process.pid + ' Iniciada...');    
+    console.log('Listening on port ' + port +' '+ process.pid + '| 192.168.20.34:'+ port +' Iniciada...');    
 });
 
 app.get('/', (req, res) => {
